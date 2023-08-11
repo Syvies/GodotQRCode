@@ -1,30 +1,19 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
 
 public partial class QRReader : Node
 {
-    public override void _Ready()
-    {
-        // Called every time the node is added to the scene.
-        // Initialization here.
-        GD.Print("Hello from C# to Godot :)");
-    }
-
-
     public string DecodeFilePath(string filePath)
     {
-        //"D:\\Documents (D)\\Godot\\QRCode Scanner\\test.png"
         Image img = Image.LoadFromFile(filePath);
-        return Decode(img);
+        return DecodeImage(img);
     }
 
 
-    public string Decode(Image image)
+    public string DecodeImage(Image image)
     {
         var reader = new BarcodeReaderGeneric();
         var luminance = new RGBLuminanceSource(image.GetData(), image.GetWidth(), image.GetHeight());
@@ -35,16 +24,16 @@ public partial class QRReader : Node
     }
 
 
-    public Image EncodeImage(string message)
+    public Image EncodeMessageImage(string message)
     {
-        Bitmap bmp = Encode(message);
+        Bitmap bmp = EncodeMessage(message);
         return bmp.ConvertToImage();
     }
 
 
-    public Bitmap Encode(string message)
+    public Bitmap EncodeMessage(string message)
     {
-        var options = new QrCodeEncodingOptions
+        QrCodeEncodingOptions options = new QrCodeEncodingOptions
         {
             DisableECI = true,
             CharacterSet = "UTF-8",
@@ -52,7 +41,7 @@ public partial class QRReader : Node
             Height = 256
         };
 
-        var writer = new BarcodeWriterGeneric();
+        BarcodeWriterGeneric writer = new BarcodeWriterGeneric();
         writer.Format = BarcodeFormat.QR_CODE;
         writer.Options = options;
 
@@ -63,19 +52,16 @@ public partial class QRReader : Node
         }
         else
         {
-            var result = writer.Encode(message);
-
-            return GetBitmap(result);
+            return GetBitmap(writer.Encode(message));
         }
     }
 
 
-    public Bitmap GetBitmap(BitMatrix matrix)
+    private Bitmap GetBitmap(BitMatrix matrix)
     {
         Vector2I imageSize = new Vector2I(matrix.Width, matrix.Height);
-
-
         Bitmap result = new Bitmap();
+
         result.Create(imageSize);
 
         for (int i = 0; i < matrix.Width; i++)

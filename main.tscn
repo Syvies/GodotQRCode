@@ -9,16 +9,39 @@ script = ExtResource("1_paofh")
 [node name="QRCode" type="Node" parent="."]
 script = ExtResource("3_j2xos")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Center" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="Panel" type="PanelContainer" parent="Center"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer"]
+[node name="VBox" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/VBox"]
+layout_mode = 2
+
+[node name="GenerateButton" type="Button" parent="Center/Panel/VBox"]
+layout_mode = 2
+text = "Generate"
+
+[node name="TextureRect" type="TextureRect" parent="Center/Panel/VBox"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="Center/Panel/VBox"]
+layout_mode = 2
+text = "Save"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+initial_position = 2
+size = Vector2i(600, 500)
+filters = PackedStringArray("*.png; PNG Image")
+
+[connection signal="pressed" from="Center/Panel/VBox/GenerateButton" to="." method="_on_generate_button_pressed"]
+[connection signal="pressed" from="Center/Panel/VBox/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
