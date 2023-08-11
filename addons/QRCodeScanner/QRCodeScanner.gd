@@ -3,7 +3,8 @@ extends EditorPlugin
 
 const NODE_NAME: String = "QRCode"
 const NODE_INHERITANCE: String = "Node"
-const NODE_SCRIPT: Script = preload("res://addons/QRCodeScanner/QRCodeNode.gd")
+#const NODE_SCRIPT: Script = preload("res://addons/QRCodeScanner/QRCodeNode.gd")
+const NODE_SCRIPT: Script = preload("res://addons/QRCodeScanner/QRReader.cs")
 const NODE_ICON: Texture2D = preload("res://addons/QRCodeScanner/icon.png")
 
 func _enter_tree() -> void:

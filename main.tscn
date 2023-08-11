@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bib7pxno2gs8d"]
+[gd_scene load_steps=3 format=3 uid="uid://bib7pxno2gs8d"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_paofh"]
-[ext_resource type="Script" path="res://addons/QRCodeScanner/QRCodeNode.gd" id="2_kq6q0"]
-[ext_resource type="Texture2D" uid="uid://dtfd2okqewbd7" path="res://icon.svg" id="3_7av1h"]
+[ext_resource type="Script" path="res://addons/QRCodeScanner/QRReader.cs" id="3_j2xos"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_paofh")
 
 [node name="QRCode" type="Node" parent="."]
-script = ExtResource("2_kq6q0")
+script = ExtResource("3_j2xos")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-position = Vector2(530, 340)
-texture = ExtResource("3_7av1h")
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
