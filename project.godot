@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="QRCode Scanner"
-config/features=PackedStringArray("4.1", "Forward Plus")
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="QRCode Scanner"
 
 [editor_plugins]
 
