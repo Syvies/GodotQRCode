@@ -12,12 +12,18 @@ func _ready() -> void:
 	var image_path: String = "res://test.png"
 	var image_file: Image = Image.load_from_file(image_path)
 
+	# Decode a QR code using a file path
 	print(qr_code.DecodeFilePath(image_path))
+
+	# Decode a QR code using an Image
 	print(qr_code.DecodeImage(image_file))
 
 
 func _on_generate_button_pressed() -> void:
+	# Generate a QR code Image from the text message
 	image_to_save = qr_code.EncodeMessageImage(line_edit.text)
+
+	# display the generated QR code Image on screen
 	var tex: ImageTexture = ImageTexture.create_from_image(image_to_save)
 	texture_rect.texture = tex
 
