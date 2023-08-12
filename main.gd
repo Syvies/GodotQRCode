@@ -12,10 +12,10 @@ func _ready() -> void:
 	var image_path: String = "res://test.png"
 	var image_file: Image = Image.load_from_file(image_path)
 
-	# Decode a QR code using a file path
+	# Decode a QR code using a file path (returns a String)
 	print(qr_code.DecodeFilePath(image_path))
 
-	# Decode a QR code using an Image
+	# Decode a QR code using an Image (returns a String)
 	print(qr_code.DecodeImage(image_file))
 
 
