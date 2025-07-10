@@ -1,3 +1,10 @@
+# DEPRECATED
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+This is no longer supported, please consider using [QR Code - Kenyoni Godot Addons](https://kenyoni-software.github.io/godot-addons/addons/qr_code/).
+
+---
 
 # GodotQRCode
 A Godot QR Code scanner and reader made in C# using the [.NET ZXing library](https://github.com/micjahn/ZXing.Net)
